@@ -1,20 +1,17 @@
 # %%
 
-from adviser import Manager
-from portfolio import Portfolio
+import sys
+sys.path.append("C:/Users/Joao/Automaton/automaton/src")
 
-manager   = Manager(long_average = 50, short_average = 9)
-portfolio = Portfolio()
+from src.services.manager.manager import Manager
 
+manager = Manager()
 manager.download_prices()
-compras, vendas = manager.get_recommendations()
+manager.analyse()
 
 # %%
 
-watch_list = manager.watch_list
-
-for ticker in watch_list:
-    manager.plot_ticker(ticker, plot_dif = True)
-
-
+for ticker in manager.compras:
+    manager.plot_ticker(ticker)
+    
 # %%
